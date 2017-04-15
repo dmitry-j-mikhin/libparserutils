@@ -36,6 +36,11 @@ else
   CFLAGS := $(CFLAGS) -Dinline="__inline__"
 endif
 
+# KolibriOS does not have a functional iconv (yet)
+ifeq ($(HOST),kolibrios)
+  CFLAGS += -DWITHOUT_ICONV_FILTER
+endif
+
 include $(NSBUILD)/Makefile.top
 
 # Extra installation rules
